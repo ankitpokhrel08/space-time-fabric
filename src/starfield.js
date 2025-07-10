@@ -5,7 +5,8 @@ export default function getStarfield({ numStars = 500 } = {}) {
   The point lies between radius 25 and 50 units from the origin.
   */
   function randomSpherePoint() {
-    const radius = Math.random() * 25 + 25; // range: [25, 50]
+    // Place stars much farther away: range [200, 300]
+    const radius = Math.random() * 100 + 200;
     const u = Math.random();
     const v = Math.random();
     const theta = 2 * Math.PI * u; // full circle in radians
