@@ -1,1 +1,2 @@
-We will be doing our graphics project here!!!
+npm install
+npm install three @react-three/fiber @react-three/drei
