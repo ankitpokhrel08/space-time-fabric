@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { TextureLoader } from "three";
 import { useLoader } from "@react-three/fiber";
 
-import { APP_CONFIG } from "../utils/planetData.js";
+import { APP_CONFIG } from "../utils/constants.js";
 
 export default function StarField({ numStars = 5000 }) {
   const starTexture = useLoader(TextureLoader, "/assets/star.png");
@@ -56,7 +56,7 @@ export default function StarField({ numStars = 5000 }) {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.2} vertexColors map={starTexture} transparent />
+      <pointsMaterial size={5} vertexColors map={starTexture} transparent />
     </points>
   );
 }

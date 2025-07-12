@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
 
-import { APP_CONFIG } from "../utils/planetData.js";
+import { APP_CONFIG } from "../utils/constants.js";
 
 const MASS_DISTORTION_SCALE = APP_CONFIG.massDistortionScale;
 const SOFTENING = APP_CONFIG.softening;

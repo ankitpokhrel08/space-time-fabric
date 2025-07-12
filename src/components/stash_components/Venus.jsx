@@ -31,7 +31,7 @@ export default function Venus({ size, distance, groupRef }) {
       const x = Math.cos(newAngle) * distance;
       const z = Math.sin(newAngle) * distance;
 
-      groupRef.current.position.set(x, 0, z);
+      groupRef.current.position.set(x, -22, z);
     }
   });
 

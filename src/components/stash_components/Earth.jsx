@@ -1,10 +1,10 @@
 import { useRef, useMemo, useState } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { useTextures } from "../hooks/useTextures";
+import { useTextures } from "../hooks/useTextures.jsx";
 
 import PlanetLabel from "./PlanetLabel.jsx";
-import { APP_CONFIG } from "../utils/planetData.js";
+import { APP_CONFIG, data } from "../utils/planetData.js";
 
 function FresnelMaterial({ rimHex = 0x0088ff, facingHex = 0x000000 }) {
   const material = useMemo(() => {
@@ -91,7 +91,7 @@ export default function Earth({ size, distance, groupRef }) {
       const x = Math.cos(newAngle) * distance;
       const z = Math.sin(newAngle) * distance;
 
-      groupRef.current.position.set(x, 0, z);
+      groupRef.current.position.set(x, -6, z);
     }
   });
 
