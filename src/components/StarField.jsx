@@ -26,6 +26,12 @@ export default function StarField({ numStars = 5000 }) {
       const y = radius * Math.sin(phi) * Math.sin(theta);
       const z = radius * Math.cos(phi);
 
+      const distanceFromOrigin = Math.sqrt(x * x + y * y + z * z);
+      if (distanceFromOrigin < APP_CONFIG.starFieldDistance) {
+        i--;
+        continue;
+      }
+
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;

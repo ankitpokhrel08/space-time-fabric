@@ -1,4 +1,6 @@
-const TIME_SCALE = 10;
+const TIME_SCALE = 100;
+
+export const GRAVITATIONAL_CONSTANT = 1; //6.674e-11;
 
 export const PLANET_DATA = {
   sun: {
@@ -53,7 +55,7 @@ export const PLANET_DATA = {
     cartesianPosition: [0, -5, 274],
     axialTilt: 6.687,
     rotationSpeed: 0.00037 * TIME_SCALE,
-    revolutionSpeed: 0.00002739726 * TIME_SCALE,
+    revolutionSpeed: 0.00002739726 * (270 / 274) * TIME_SCALE,
     textures: ["moon_surface.jpg"],
     fabricPosition: -5,
   },
@@ -70,12 +72,12 @@ export const PLANET_DATA = {
   jupiter: {
     radius: 10.97,
     orbitalRadius: 400,
-    cartesianPosition: [0, 55, 400],
+    cartesianPosition: [0, 40, 400],
     axialTilt: -3.1,
     rotationSpeed: 0.0244 * TIME_SCALE,
     revolutionSpeed: 0.000002307869 * TIME_SCALE,
     textures: ["jupiter_surface.jpg"],
-    fabricPosition: 55,
+    fabricPosition: 40,
   },
   saturn: {
     radius: 9.14,
@@ -111,14 +113,14 @@ export const PLANET_DATA = {
 };
 
 export const APP_CONFIG = {
-  initalCameraPosition: [-250, 0, 80],
+  initalCameraPosition: [0, 420, 950],
   farClippingPlane: 5000,
   dampingFactor: 0.05,
   zoomSpeed: 0.5,
   rotateSpeed: 0.5,
   displayLabel: false,
   starFieldDistance: 1000,
-  fabricSize: 2100,
+  fabricSize: 1000,
   massDistortionScale: 5.6e-24,
   softening: 55000,
   maxDistortionDepth: -200,

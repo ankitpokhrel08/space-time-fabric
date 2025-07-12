@@ -4,6 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import SpaceTimeFabric from "./components/SpaceTimeFabric.jsx";
 import StarField from "./components/StarField.jsx";
 import CelestialBody from "./components/CelestialBody.jsx";
+import ObjectCluster from "./components/ObjectCluster.jsx";
 
 import { APP_CONFIG } from "./utils/constants.js";
 
@@ -21,19 +22,9 @@ function App() {
         gl={{ antialias: true }}
       >
         <ambientLight intensity={2} />
-        <SpaceTimeFabric />
-        <StarField />
+        {/* <SpaceTimeFabric /> */}
 
-        <CelestialBody title="sun" />
-        <CelestialBody title="mercury" />
-        <CelestialBody title="venus" />
-        <CelestialBody title="earth" />
-        <CelestialBody title="moon" />
-        <CelestialBody title="mars" />
-        <CelestialBody title="jupiter" />
-        <CelestialBody title="saturn" />
-        <CelestialBody title="uranus" />
-        <CelestialBody title="neptune" />
+        <ObjectCluster />
 
         <OrbitControls
           enablePan={true}
@@ -50,3 +41,20 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <StarField /> */
+}
+
+{
+  /* <CelestialBody title="sun" />
+        <CelestialBody title="mercury" />
+        <CelestialBody title="venus" />
+        <CelestialBody title="earth" />
+        <CelestialBody title="moon" />
+        <CelestialBody title="mars" />
+        <CelestialBody title="jupiter" />
+        <CelestialBody title="saturn" />
+        <CelestialBody title="uranus" />
+        <CelestialBody title="neptune" /> */
+}

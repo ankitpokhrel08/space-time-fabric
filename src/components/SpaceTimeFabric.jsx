@@ -9,7 +9,7 @@ const MAX_DISTORTION_DEPTH = APP_CONFIG.maxDistortionDepth;
 
 export default function SpaceTimeFabric({
   planetPosition = new THREE.Vector3(0, 0, 0),
-  planetMass = 1.989e30,
+  planetMass = 0,
   resolution = 100,
   width = APP_CONFIG.fabricSize,
   height = APP_CONFIG.fabricSize,
@@ -53,7 +53,7 @@ export default function SpaceTimeFabric({
   }, [planetPosition, planetMass]);
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 80, 0]}>
+    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
       <planeGeometry args={[width, height, resolution, resolution]} />
       <meshStandardMaterial
         color="green"

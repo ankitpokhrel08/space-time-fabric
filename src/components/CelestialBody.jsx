@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
-import { TextureLoader, AdditiveBlending } from "three";
+import * as THREE from "three";
 import { useFrame, useLoader } from "@react-three/fiber";
 
 import PlanetLabel from "./PlanetLabel.jsx";
+import Orbit from "./Orbit.jsx";
 import FresnelMaterial from "./FresnelMaterial.jsx";
 
 import { PLANET_DATA, APP_CONFIG } from "../utils/constants.js";
@@ -21,7 +22,7 @@ export default function CelestialBody({ title }) {
     (eachTexture) => `/assets/${eachTexture}`
   );
 
-  const bodyTextures = useLoader(TextureLoader, texturePaths);
+  const bodyTextures = useLoader(THREE.TextureLoader, texturePaths);
 
   useFrame((state, delta) => {
     if (mainBodyRef.current) {
@@ -53,45 +54,72 @@ export default function CelestialBody({ title }) {
   });
 
   return (
-    <group
-      ref={groupRef}
-      rotation={[0, 0, (bodyData.axialTilt * Math.PI) / 180]}
-      position={bodyData.cartesianPosition}
-    >
-      <mesh ref={mainBodyRef}>
-        <icosahedronGeometry args={[bodyData.radius, 16]} />
-        <meshStandardMaterial map={bodyTextures[0]} />
-        {APP_CONFIG.displayLabel && <PlanetLabel title={title} />}
-      </mesh>
+    <>
+      <group
+        ref={groupRef}
+        rotation={[0, 0, (bodyData.axialTilt * Math.PI) / 180]}
+        position={bodyData.cartesianPosition}
+      >
+        <mesh ref={mainBodyRef}>
+          <icosahedronGeometry args={[bodyData.radius, 16]} />
+          <meshStandardMaterial map={bodyTextures[0]} />
+          {APP_CONFIG.displayLabel && <PlanetLabel title={title} />}
+        </mesh>
 
-      {/* <mesh ref={secondaryRef} scale={1.002}>
-        <icosahedronGeometry args={[bodyData.radius, 16]} />
-        <meshBasicMaterial
-          map={cloudsTexture}
-          transparent={true}
-          opacity={0.3}
-          blending={AdditiveBlending}
-        />
-      </mesh> */}
-
-      {bodyData.textures.length === 3 ? (
-        <>
-          <mesh ref={lightsRef} scale={1.001}>
+        {title === "venus" && (
+          <mesh ref={secondaryRef} scale={1.003}>
             <icosahedronGeometry args={[bodyData.radius, 16]} />
-            <meshBasicMaterial
-              map={bodyTextures[2]}
-              transparent={true}
-              blending={AdditiveBlending}
+            <meshBasicMaterial map={bodyTextures[1]} />
+          </mesh>
+        )}
+
+        {/* {title === "saturn" && (
+          <mesh ref={secondaryRef} rotation-x={-Math.PI / 2}>
+            <ringGeometry
+              args={[
+                bodyData.radius * 1.1,
+                bodyData.radius * 2.74835886214,
+                50,
+              ]}
+            />
+            <meshStandardMaterial
+              map={bodyTextures[1]}
+              transparent
+              side={THREE.DoubleSide}
             />
           </mesh>
-          <mesh ref={atmosphereRef} scale={1.003}>
-            <icosahedronGeometry args={[bodyData.radius, 16]} />
-            <FresnelMaterial />
-          </mesh>
-        </>
-      ) : (
-        ""
-      )}
-    </group>
+        )} */}
+
+        {title === "earth" && (
+          <>
+            <mesh ref={lightsRef} scale={1.001}>
+              <icosahedronGeometry args={[bodyData.radius, 16]} />
+              <meshBasicMaterial
+                map={bodyTextures[2]}
+                transparent={true}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+            <mesh ref={secondaryRef} scale={1.002}>
+              <icosahedronGeometry args={[bodyData.radius, 16]} />
+              <meshBasicMaterial
+                map={bodyTextures[1]}
+                transparent={true}
+                opacity={0.3}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+            <mesh ref={atmosphereRef} scale={1.003}>
+              <icosahedronGeometry args={[bodyData.radius, 16]} />
+              <FresnelMaterial />
+            </mesh>
+          </>
+        )}
+      </group>
+      <Orbit
+        orbitalRadius={bodyData.orbitalRadius}
+        fabricPosition={bodyData.fabricPosition}
+      />
+    </>
   );
 }
