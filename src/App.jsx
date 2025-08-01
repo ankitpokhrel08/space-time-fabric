@@ -22,10 +22,21 @@ function App() {
         gl={{ antialias: true }}
       >
         <ambientLight intensity={2} />
-        {/* <SpaceTimeFabric /> */}
+        <SpaceTimeFabric />
 
         <ObjectCluster />
+        {/* <CelestialBody title="sun" />
+        <CelestialBody title="mercury" />
+        <CelestialBody title="venus" />
+        <CelestialBody title="earth" />
+        <CelestialBody title="moon" />
+        <CelestialBody title="mars" />
+        <CelestialBody title="jupiter" />
+        <CelestialBody title="saturn" />
+        <CelestialBody title="uranus" />
+        <CelestialBody title="neptune" /> */}
 
+        {/* <StarField /> */}
         <OrbitControls
           enablePan={true}
           enableZoom={true}
@@ -41,20 +52,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <StarField /> */
-}
-
-{
-  /* <CelestialBody title="sun" />
-        <CelestialBody title="mercury" />
-        <CelestialBody title="venus" />
-        <CelestialBody title="earth" />
-        <CelestialBody title="moon" />
-        <CelestialBody title="mars" />
-        <CelestialBody title="jupiter" />
-        <CelestialBody title="saturn" />
-        <CelestialBody title="uranus" />
-        <CelestialBody title="neptune" /> */
-}
