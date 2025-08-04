@@ -3,18 +3,12 @@ import * as THREE from "three";
 
 import { APP_CONFIG } from "../utils/constants.js";
 
-const MASS_DISTORTION_SCALE = APP_CONFIG.massDistortionScale;
-const SOFTENING = APP_CONFIG.softening;
-const MAX_DISTORTION_DEPTH = APP_CONFIG.maxDistortionDepth;
-
-export default function SpaceTimeFabric({
-  planetPosition = new THREE.Vector3(0, 0, 0),
-  planetMass = 0,
-  resolution = 100,
-  width = APP_CONFIG.fabricSize,
-  height = APP_CONFIG.fabricSize,
-}) {
+export default function SpaceTimeFabric({ objectData = [] }) {
   const meshRef = useRef();
+
+  const resolution = 100;
+  const width = APP_CONFIG.fabricSize;
+  const height = APP_CONFIG.fabricSize;
 
   useEffect(() => {
     const fabricMesh = meshRef.current;
@@ -26,31 +20,41 @@ export default function SpaceTimeFabric({
     const geometry = fabricMesh.geometry;
     const positions = geometry.attributes.position;
 
-    let maxDistortionAtCenter = 0;
-
     for (let i = 0; i < positions.count; i++) {
-      const x = positions.getX(i);
-      const y = positions.getY(i);
+      positions.setZ(i, 0);
+    }
 
-      const dx = x - planetPosition.x;
-      const dy = y - planetPosition.y;
-      const distanceSquared = dx * dx + dy * dy;
+    for (const { position, radius, mass } of objectData) {
+      let maxDistortion = -(radius * 1.25);
+      let influenceRadius = radius * 2.5;
 
-      let distortion =
-        (-planetMass * MASS_DISTORTION_SCALE) / (distanceSquared + SOFTENING);
-
-      distortion = Math.max(distortion, MAX_DISTORTION_DEPTH);
-
-      if (distanceSquared < 0.2) {
-        maxDistortionAtCenter = Math.min(maxDistortionAtCenter, distortion);
+      if (mass >= 10e9) {
+        maxDistortion = -1200;
       }
 
-      positions.setZ(i, distortion);
+      for (let i = 0; i < positions.count; i++) {
+        const x = positions.getX(i);
+        const y = positions.getY(i);
+
+        const dx = x - position.x;
+        const dy = -y - position.z;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < influenceRadius) {
+          const t = distance / influenceRadius;
+          const falloff = Math.cos(t * Math.PI) * 0.5 + 0.5;
+          const distortion = maxDistortion * falloff;
+
+          const currentZ = positions.getZ(i);
+
+          positions.setZ(i, currentZ + distortion);
+        }
+      }
     }
 
     positions.needsUpdate = true;
     geometry.computeVertexNormals();
-  }, [planetPosition, planetMass]);
+  }, [objectData]);
 
   return (
     <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>

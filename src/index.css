@@ -2,3 +2,13 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+.input-nav {
+  position: fixed;
+  background-color: #e8eae7ff;
+  height: 100vh;
+  width: 17rem;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
