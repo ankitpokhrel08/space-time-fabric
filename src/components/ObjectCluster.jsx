@@ -9,9 +9,7 @@ export default function ObjectCluster({ getObjectsData, payload }) {
   const [objects, setObjects] = useState(payload);
 
   useEffect(() => {
-    if (payload && payload.length > 0) {
-      setObjects(payload);
-    }
+    setObjects(payload);
   }, [payload]);
 
   useEffect(() => {
