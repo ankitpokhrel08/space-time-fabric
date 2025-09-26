@@ -120,6 +120,6 @@ export const APP_CONFIG = {
   rotateSpeed: 0.5,
   displayLabel: false,
   starFieldDistance: 1000,
-  fabricSize: 1000,
+  fabricSize: 2000,
   maxDistortionDepth: -1200,
 };

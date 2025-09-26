@@ -1,4 +1,4 @@
-export default function TestObject({ texture = null, radius, position }) {
+export default function TestObject({ texture = null, radius, position,mass }) {
   return (
     <group position={position}>
       <mesh>
@@ -6,7 +6,7 @@ export default function TestObject({ texture = null, radius, position }) {
         {texture ? (
           <meshStandardMaterial map={texture} />
         ) : (
-          <meshStandardMaterial color="#ffffff" />
+          <meshStandardMaterial color={mass>=10e9?"#000000":"#ffffff"} />
         )}
       </mesh>
     </group>

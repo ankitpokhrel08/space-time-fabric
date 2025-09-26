@@ -92,6 +92,7 @@ export default function ObjectCluster({ getObjectsData, payload }) {
       {objects.map((eachObject) => (
         <TestObject
           key={eachObject.id}
+          mass={eachObject.mass}
           texture={eachObject.texture}
           radius={eachObject.radius}
           position={eachObject.position}

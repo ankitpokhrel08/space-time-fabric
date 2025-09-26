@@ -6,7 +6,7 @@ import { APP_CONFIG } from "../utils/constants.js";
 export default function SpaceTimeFabric({ objectData = [] }) {
   const meshRef = useRef();
 
-  const resolution = 100;
+  const resolution = 200;
   const width = APP_CONFIG.fabricSize;
   const height = APP_CONFIG.fabricSize;
 

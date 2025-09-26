@@ -12,7 +12,6 @@ import SettingsIcon from "./components/SettingsIcon.jsx";
 import PlusIcon from "./components/PlusIcon.jsx";
 
 import { APP_CONFIG } from "./utils/constants.js";
-import { texture } from "three/tsl";
 
 function App() {
   const [userData, setUserData] = useState([]);

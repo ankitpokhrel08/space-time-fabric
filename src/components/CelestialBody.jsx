@@ -24,7 +24,7 @@ export default function CelestialBody({ title }) {
 
   const bodyTextures = useLoader(THREE.TextureLoader, texturePaths);
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (mainBodyRef.current) {
       mainBodyRef.current.rotation.y += bodyData.rotationSpeed;
     }
