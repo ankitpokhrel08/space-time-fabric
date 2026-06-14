@@ -1,6 +1,8 @@
 # Space-Time Fabric 🌌
 
 An interactive 3D visualization of Einstein's spacetime fabric concept, demonstrating how massive celestial bodies warp the fabric of spacetime. Built with React, Three.js, and React Three Fiber.
+<img width="1317" height="787" alt="2_bodies" src="https://github.com/user-attachments/assets/15fd226d-9228-48e1-9996-a1611ef372de" />
+
 
 **📚 Academic Project**: This project was developed as part of the Computer Graphics course for 5th Semester Computer Engineering.
 
